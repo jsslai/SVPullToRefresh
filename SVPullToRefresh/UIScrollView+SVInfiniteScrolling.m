@@ -60,7 +60,7 @@ UIEdgeInsets scrollViewOriginalContentInsets;
 - (void)addInfiniteScrollingWithScrollingDiretion:(SVInfiniteScrollingDirection)direction actionHandler:(void (^)(void))actionHandler {
     
     if(!self.infiniteScrollingView) {
-        CGFloat yOrigin;
+        CGFloat yOrigin = 0.0;
         switch (direction) {
             case SVInfiniteScrollingDirectionBottom:
                 yOrigin = self.contentSize.height;
@@ -118,7 +118,7 @@ UIEdgeInsets scrollViewOriginalContentInsets;
         self.infiniteScrollingView.isObserving = YES;
           
         [self.infiniteScrollingView setNeedsLayout];
-        CGFloat yOrigin;
+        CGFloat yOrigin = 0.0;
         switch (self.infiniteScrollingView.direction) {
             case SVInfiniteScrollingDirectionBottom:
                 yOrigin = self.contentSize.height;
@@ -227,7 +227,7 @@ UIEdgeInsets scrollViewOriginalContentInsets;
         [self scrollViewDidScroll:[[change valueForKey:NSKeyValueChangeNewKey] CGPointValue]];
     else if([keyPath isEqualToString:@"contentSize"]) {
         [self layoutSubviews];
-        CGFloat yOrigin;
+        CGFloat yOrigin = 0.0;
         switch (self.direction) {
             case SVInfiniteScrollingDirectionBottom:
                 yOrigin = self.scrollView.contentSize.height;
@@ -243,7 +243,7 @@ UIEdgeInsets scrollViewOriginalContentInsets;
 - (void)scrollViewDidScroll:(CGPoint)contentOffset {
     if(self.state != SVInfiniteScrollingStateLoading && self.enabled) {
         CGFloat scrollViewContentHeight = self.scrollView.contentSize.height;
-        CGFloat scrollOffsetThreshold;
+        CGFloat scrollOffsetThreshold = 0.0;
         switch (self.direction) {
             case SVInfiniteScrollingDirectionBottom:
                 scrollOffsetThreshold = scrollViewContentHeight-self.scrollView.bounds.size.height;
